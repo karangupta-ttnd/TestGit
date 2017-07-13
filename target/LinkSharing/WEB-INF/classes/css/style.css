@@ -1,0 +1,163 @@
+
+body {
+    padding: 30px;
+}
+
+.row.header{
+    margin-top: 10px;
+    border-radius:6px;
+    border:2px solid;
+}   
+
+.link{
+    color: blue;
+}
+
+.new-file
+{
+    width: 20px;
+    height: 20px;
+}
+.search-bar input{
+    font-style:italic;
+    padding-top:1px;
+    padding-bottom:1px;
+    border:none !important;
+}
+
+.search-bar.pull-right {
+    margin-right: 10px;
+    margin-top:19px; 
+    border-radius:10px;
+    border:2px solid black ;
+}
+
+.search-bar.decrease-margin{
+        margin-top:0px; 
+
+}
+
+
+#search-logo{
+    padding-left:5px;
+}
+
+#remove-sign{
+    padding-right:5px;
+}
+
+.top-right-links{ 
+    display:inline-block;
+    margin-top:19px; 
+    font-size: 20px ;
+}
+
+
+.glyphicon.glyphicon-user.smallIcon {
+    font-size: 20px;
+    border:none ;  
+}
+
+
+.user-name{
+    font-size: 15px;
+}
+
+
+.panel.panel-default{
+  border:3px solid black;
+}
+.panel-body{
+    border-top:2px solid black;
+}
+
+#recent_shares{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.row-buffer { margin-top:20px; }
+
+.glyphicon.glyphicon-user {
+    font-size: 110px;
+    border:2px solid gray; 
+    color:gray; 
+}
+
+
+.twitter-handler{
+    padding-left: 10px;
+    color: grey;
+}
+
+.row.links{
+    padding-top: 5px;
+}
+
+.fa{
+    padding-left:2px;
+     padding-right:2px;
+}
+
+
+#top_posts{
+     
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
+
+
+
+#recent_shares{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#subscribers-detail{
+
+	margin-top: 10px;
+   margin-bottom: 10px;
+}
+
+
+
+#login{ 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#forgot_pwd{
+    padding-top:10px;
+}
+
+.btn.btn-submit{
+    border:2px solid black;
+    border-radius: 5px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+input[type=text],input[type=email],input[type=password],input[type=file]{
+     border:2px solid black;
+}
+
+
+#register{
+     
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
+
+
+textarea{
+	 resize: none;
+}
+
+/*Modals*/
+
+
+.select-border{
+    border: 2px solid black !important;
+    border-radius: 3px;
+}
