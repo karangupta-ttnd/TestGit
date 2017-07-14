@@ -1,4 +1,4 @@
-package com.linksharing.model.entities;
+package com.linksharing.dto;
 
 import org.hibernate.annotations.ManyToAny;
 
@@ -9,40 +9,35 @@ import java.util.List;
 /**
  * Created by karan on 13/7/17.
  */
-@Entity
-public class Subscriptions {
-    @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class SubscriptionsDTO {
+
     Integer id;
-
-    @ManyToOne(targetEntity =User.class,optional = false )
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne(targetEntity = Topic.class,cascade = CascadeType.ALL,optional = false)
-    @JoinColumn(name = "topic_id")
-    private Topic topic;
-
-    @Column(nullable = false)
+    private UserDTO user;
+    private TopicDTO topic;
     private SeriousnessType seriousness;
-
-    @Column(nullable = false)
     private Date dateCreated;
 
-    public User getUser() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO user) {
         this.user = user;
     }
 
-    public Topic getTopic() {
+    public TopicDTO getTopic() {
         return topic;
     }
 
-    public void setTopic(Topic topic) {
+    public void setTopic(TopicDTO topic) {
         this.topic = topic;
     }
 

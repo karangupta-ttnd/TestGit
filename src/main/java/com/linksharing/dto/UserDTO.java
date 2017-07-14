@@ -1,4 +1,4 @@
-package com.linksharing.model.entities;
+package com.linksharing.dto;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -7,36 +7,19 @@ import java.util.Date;
  * Created by karan on 11/7/17.
  */
 
-@Entity
-public class User {
+public class UserDTO {
 
-    @Id
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, length = 50)
     private String email;
-    @Column(nullable = false, length = 50)
     private String username;
-    @Column(nullable = false, length = 50)
     private String password;
-    @Column(nullable = false, length = 50)
     private String firstName;
-    @Column(nullable = false, length = 50)
     private String lastName;
-    @Column(nullable = false, length = 50)
     private String oauthid;
-    @Column(nullable = false)
     private Byte photo;
-    @Column(nullable = false)
     private Boolean admin;
-    @Column(nullable = false)
     private Boolean active;
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
 
     public String getEmail() {

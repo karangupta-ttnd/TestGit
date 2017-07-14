@@ -1,33 +1,18 @@
-package com.linksharing.model.entities;
+package com.linksharing.dto;
 
-import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by karan on 13/7/17.
  */
 
-@Entity
-public class Topic {
+public class TopicDTO {
 
-    @Id
-    @Column(name = "topic_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false, length = 50)
     private String name;
-
-    @ManyToOne(targetEntity = User.class,optional = false )
-    private User createdBy;
-
-    @Column(nullable = false)
+    private UserDTO createdBy;
     private Date dateCreated;
-
-    @Column(nullable = false)
     private Date lastUpdated;
-
-    @Column(nullable = false)
     private Visibility visibility;
 
     public Visibility getVisibility() {
@@ -46,11 +31,11 @@ public class Topic {
         this.name = name;
     }
 
-    public User getCreatedBy() {
+    public UserDTO getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(User createdBy) {
+    public void setCreatedBy(UserDTO createdBy) {
         this.createdBy = createdBy;
     }
 

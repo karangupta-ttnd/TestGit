@@ -1,13 +1,26 @@
 package com.linksharing.model.entities;
 
+import javax.persistence.*;
+
 /**
  * Created by karan on 13/7/17.
  */
+@Entity
 public class ReadingItem {
 
-    Resource resource;
-    User user;
-    Boolean isread;
+    @Id
+    @Column(name = "reading_item_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
+
+    @ManyToOne(targetEntity = Resource.class,optional = false,cascade = CascadeType.ALL)
+    private Resource resource;
+
+    @ManyToOne(targetEntity = User.class,optional = false,cascade = CascadeType.ALL)
+    private User user;
+
+    @Column(nullable = false)
+    private Boolean isRead;
 
     public Resource getResource() {
         return resource;
@@ -25,11 +38,11 @@ public class ReadingItem {
         this.user = user;
     }
 
-    public Boolean getIsread() {
-        return isread;
+    public Boolean getRead() {
+        return isRead;
     }
 
-    public void setIsread(Boolean isread) {
-        this.isread = isread;
+    public void setRead(Boolean read) {
+        isRead = read;
     }
 }
