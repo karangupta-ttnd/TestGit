@@ -33,13 +33,13 @@ public class UserController {
     private static final Logger logger = Logger.getLogger(UserController.class);
 
     @RequestMapping(value="/register",method = RequestMethod.POST)
-    public String register(@Valid @ModelAttribute("user")UserDTO user, BindingResult result, ModelMap model) {
+    public ModelAndView register(@Valid @ModelAttribute("user")UserDTO user, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
-            return "error";
+            return new ModelAndView("/errors/error");
         }
         logger.info(user.toString());
         userService.register(user);
-        return
+        return new ModelAndView("/profile/dashboard");
     }
 
 }
