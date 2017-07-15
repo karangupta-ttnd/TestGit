@@ -22,6 +22,22 @@ public class UserDTO {
     private Date dateCreated;
     private Date lastUpdated;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getOauthid() {
+        return oauthid;
+    }
+
+    public void setOauthid(String oauthid) {
+        this.oauthid = oauthid;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -100,5 +116,23 @@ public class UserDTO {
 
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", oauthid='" + oauthid + '\'' +
+                ", photo=" + photo +
+                ", admin=" + admin +
+                ", active=" + active +
+                ", dateCreated=" + dateCreated +
+                ", lastUpdated=" + lastUpdated +
+                '}';
     }
 }

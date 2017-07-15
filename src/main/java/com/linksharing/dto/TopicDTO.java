@@ -1,5 +1,7 @@
 package com.linksharing.dto;
 
+import com.linksharing.enums.Visibility;
+
 import java.util.Date;
 
 /**

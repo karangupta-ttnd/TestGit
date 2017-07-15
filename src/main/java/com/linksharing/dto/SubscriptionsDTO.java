@@ -1,10 +1,8 @@
 package com.linksharing.dto;
 
-import org.hibernate.annotations.ManyToAny;
+import com.linksharing.enums.SeriousnessType;
 
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by karan on 13/7/17.

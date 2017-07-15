@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -7,7 +8,7 @@
 <head>
     <title>Home Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
 </head>
@@ -196,7 +197,7 @@
                     <div id="register" class="panel panel-default">
                         <div class="panel-heading">Register</div>
                         <div class="panel-body">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" modelAttribute="userDTO" action="/register" method="POST">
                                 <div class="form-group">
                                     <label class="control-label col-md-5" for="first_name">
                                         <span class="pull-left"> First Name *  </span>
@@ -312,8 +313,8 @@
         </div>
     </div>
 
-    <script type="text/javascript"  src="/assets/js/jquery-3.2.1.js"></script>
-    <script type="text/javascript"  src="/assets/js/script.js"></script>
+    <script type="text/javascript"  src="/js/jquery-3.2.1.js"></script>
+    <script type="text/javascript"  src="/js/script.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

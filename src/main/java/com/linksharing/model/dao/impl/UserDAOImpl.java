@@ -21,4 +21,10 @@ public class UserDAOImpl implements UserDAO{
     public void saveUser(UserDTO user) {
         sessionFactory.getCurrentSession().saveOrUpdate(user);
     }
+
+    public UserDTO getUser(Integer id){
+        return new UserDTO();
+    }
+
+
 }

@@ -20,8 +20,22 @@ public class UserServiceImpl implements UserService {
     private UserDAOImpl userDAOImpl;
 
 
-    public void register(UserDTO user) {
-        userDAOImpl.saveUser(user);
+    public String register(UserDTO user) {
+        try {
+            if (userDAOImpl.getUser(user.getId()).getId() == 0) {
+                return "already registered";
+            } else {
+                userDAOImpl.saveUser(user);
+                if ()
+                    return "success";
+                else
+                    return "fail";
+
+            }
+        } catch (Exception e) {
+            System.out.print(e);
+            return "fail";
+        }
     }
 
 
