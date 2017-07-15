@@ -8,7 +8,7 @@ import com.linksharing.dto.UserDTO;
 public interface UserService {
 
    void login();
-   String register(UserDTO user);
+   void register(UserDTO user);
    void signout();
    void forgotPassword();
    void updateProfileDetails();
