@@ -26,7 +26,8 @@ public class User {
     private String lastName;
     @Column(nullable = false, length = 50)
     private String oauthid;
-    @Column(nullable = false)
+    @Lob
+    @Column(nullable = true)
     private Byte photo;
     @Column(nullable = false)
     private Boolean admin;
