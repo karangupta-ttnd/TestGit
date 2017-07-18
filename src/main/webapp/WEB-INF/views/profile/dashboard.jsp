@@ -1,3 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,11 +39,11 @@
 										<div class="top-right-links pull-right">
 												<div class="row">
 													<div class="col-md-2">
-														<span class="glyphicon glyphicon-userDTO smallIcon"></span>
+														<span class="glyphicon glyphicon-userCO smallIcon"></span>
 													</div>
 													<div class="col-md-10">
 														<span id="profile-menu"  data-toggle="dropdown">
-																<span class="userDTO-name"><p>Balaguruswamy Chattopadhaya <span class="caret" ></span></p></span>
+																<span class="userCO-name"><p>Balaguruswamy Chattopadhaya <span class="caret" ></span></p></span>
 														</span>    
 																<ul class="dropdown-menu" role="menu" aria-labelledby="profile-menu">
 																	<li role="presentation"><a role="menuitem"  href="#">Profile</a></li>
@@ -65,7 +69,7 @@
 								<div class="panel-body">
 									<div class="row">
 										<div class="col-md-3">
-											<span class="glyphicon glyphicon-userDTO"></span>
+											<span class="glyphicon glyphicon-userCO"></span>
 										</div>
 										<div class="col-md-9">
 											<div class="row">
@@ -150,7 +154,7 @@
 									<div class="panel-body">
 										<div class="row row-buffer">
 												<div class="col-md-2">
-													<span class="glyphicon glyphicon-userDTO"></span>
+													<span class="glyphicon glyphicon-userCO"></span>
 												</div>
 												<div class="col-md-10">
 													<div class="row">
@@ -185,7 +189,7 @@
 										<hr/>
 										<div class="row row-buffer">
 												<div class="col-md-2">
-													<span class="glyphicon glyphicon-userDTO"></span>
+													<span class="glyphicon glyphicon-userCO"></span>
 												</div>
 												<div class="col-md-10">
 													<div class="row">
