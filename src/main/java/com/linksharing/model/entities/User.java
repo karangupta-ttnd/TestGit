@@ -1,5 +1,7 @@
 package com.linksharing.model.entities;
 
+import com.linksharing.dto.UserDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -28,7 +30,7 @@ public class User {
     private String oauthid;
     @Lob
     @Column(nullable = true)
-    private Byte photo;
+    private byte[] photo;
     @Column(nullable = false)
     private Boolean admin;
     @Column(nullable = false)
@@ -39,6 +41,40 @@ public class User {
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdated;
+        
+    public User(){}
+    
+    public User(UserDTO userDTO){
+        if (userDTO!=null) {
+            this.id = userDTO.getId();
+            this.firstName = userDTO.getFirstName();
+            this.lastName = userDTO.getLastName();
+            this.email = userDTO.getEmail();
+            this.photo = userDTO.getPhoto();
+            this.username = userDTO.getUsername();
+            this.password=userDTO.getPassword();
+            this.setAdmin(false);
+            this.setDateCreated(new Date());
+            this.setLastUpdated(new Date());
+            this.setOauthid("none");
+        }
+    }
+    
+    public String getOauthid() {
+        return oauthid;
+    }
+
+    public void setOauthid(String oauthid) {
+        this.oauthid = oauthid;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 
     public String getEmail() {
         return email;
@@ -80,12 +116,8 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Byte getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Byte photo) {
-        this.photo = photo;
+    public Integer getId() {
+        return id;
     }
 
     public Boolean getAdmin() {
