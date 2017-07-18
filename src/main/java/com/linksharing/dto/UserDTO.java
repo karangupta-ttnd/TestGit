@@ -1,5 +1,8 @@
 package com.linksharing.dto;
 
+import com.linksharing.model.entities.User;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,11 +19,44 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String oauthid;
-    private Byte photo;
+    private MultipartFile multipartFile;
+    private byte[] photo;
     private Boolean admin;
     private Boolean active;
     private Date dateCreated;
     private Date lastUpdated;
+
+    public  UserDTO(){}
+
+    public MultipartFile getMultipartFile() {
+        return multipartFile;
+    }
+
+    public void setMultipartFile(MultipartFile multipartFile) {
+        this.multipartFile = multipartFile;
+    }
+
+    public UserDTO(User user) {
+        if(user!=null) {
+            this.id = user.getId();
+            this.firstName = user.getFirstName();
+            this.lastName = user.getLastName();
+            this.email = user.getEmail();
+            this.active = user.getActive();
+            this.admin = user.getAdmin();
+            this.lastUpdated = user.getLastUpdated();
+            this.username = user.getUsername();
+            this.photo=user.getPhoto();
+        }
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
 
     public Integer getId() {
         return id;
@@ -78,14 +114,6 @@ public class UserDTO {
         this.lastName = lastName;
     }
 
-    public Byte getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(Byte photo) {
-        this.photo = photo;
-    }
-
     public Boolean getAdmin() {
         return admin;
     }
@@ -117,6 +145,7 @@ public class UserDTO {
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
 
     @Override
     public String toString() {
