@@ -214,7 +214,8 @@
                                     <span class="pull-left"> First Name *  </span>
                                 </label>
                                 <div class="col-md-7">
-                                    <form:input type="text" class="form-control" id="first_name" path="firstName" required="required" />
+                                    <form:input type="text" class="form-control" id="first_name" path="firstName" required="required" /><br>
+                                    <span class="error_msg"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -222,7 +223,8 @@
                                     <span class="pull-left"> Last Name *  </span>
                                 </label>
                                 <div class="col-md-7">
-                                    <form:input type="text" class="form-control" id="last_name" name="lastName" path="lastName" required="required"/>
+                                    <form:input type="text" class="form-control" id="last_name" name="lastName" path="lastName" required="required"/><br>
+                                    <span class="error_msg"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -230,7 +232,8 @@
                                     <span class="pull-left">   Email *  </span>
                                 </label>
                                 <div class="col-md-7">
-                                    <form:input type="email" class="form-control" id="email" path="email" required="required" />
+                                    <form:input type="email" class="form-control" id="email" path="email" required="required" /><br>
+                                    <span class="error_msg"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -238,7 +241,8 @@
                                     <span class="pull-left">  Username *  </span>
                                 </label>
                                 <div class="col-md-7">
-                                    <form:input type="text" class="form-control" id="user_name" path="username" required="required" />
+                                    <form:input type="text" class="form-control" id="user_name" path="username" required="required" /><br>
+                                    <span class="error_msg"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -246,7 +250,8 @@
                                     <span class="pull-left">  Password *  </span>
                                 </label>
                                 <div class="col-md-7 ">
-                                    <form:input type="password" class="form-control" id="pwd" path="password" required="required"/>
+                                    <form:input type="password" class="form-control" id="pwd" path="password" required="required"/><br>
+                                    <span class="error_msg"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -254,7 +259,8 @@
                                     <span class="pull-left"> Confirm Password*  </span>
                                 </label>
                                 <div class="col-md-7 ">
-                                    <input type="password" class="form-control" id="confirm_pwd" required>
+                                    <input type="password" class="form-control" id="confirm_pwd" required><br>
+                                    <span class="error_msg"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -325,6 +331,49 @@
 
 <script type="text/javascript" src="/assets/js/jquery-3.2.1.js"></script>
 <script type="text/javascript" src="/assets/js/script.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.validate.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $("form[name='register_form']").validate({
+            // Specify validation rules
+            rules: {
+                first_name: "required",
+                lastname: "required",
+                email: {
+                    required: true,
+                    email: true
+                },
+                username: "required",
+                password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#confirm_password"
+                },confirm_password: {
+                    required: true,
+                    minlength: 5,
+                    equalTo: "#password"
+                }
+            },
+            // Specify validation error messages
+            messages: {
+                firstname: "Please enter your firstname",
+                lastname: "Please enter your lastname",
+                password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                email: "Please enter a valid email address",
+                confirm_password: "Password should match",
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+    });
+
+</script>
 </body>
 </html>
