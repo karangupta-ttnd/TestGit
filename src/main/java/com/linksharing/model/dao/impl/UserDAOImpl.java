@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.jws.soap.SOAPBinding;
+
 /**
  * Created by karan on 11/7/17.
  */
@@ -47,4 +49,15 @@ public class UserDAOImpl implements UserDAO {
             user = (User) queryResult;
         return user;
     }
+
+    public User getRegisteredUser(String email, String password){
+        User user=null;
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("from User where email =:email or username=:uname and password=:pass and active=1").setString("email", email).setString("uname", email).setString("pass",password);
+        Object queryResult = query.uniqueResult();
+        if (queryResult != null)
+            user = (User) queryResult;
+        return user;
+    }
+
 }
