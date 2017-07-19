@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 
@@ -31,10 +32,9 @@ public class UserController {
     private static final Logger logger = Logger.getLogger(UserController.class);
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView register(@ModelAttribute("user")UserDTO user, BindingResult result, @RequestParam("multipartFile") MultipartFile file, HttpServletResponse response) {
+    public ModelAndView register(@ModelAttribute("user") UserDTO user, BindingResult result, @RequestParam("multipartFile") MultipartFile file) {
         ModelAndView model = new ModelAndView();
         if (result.hasErrors()) {
-
             List<String> messages = new ArrayList<String>();
             for (Object object : result.getAllErrors()) {
                 try {
@@ -43,7 +43,7 @@ public class UserController {
                         messages.add(messageSource.getMessage(fieldError, null));
                     }
                 } catch (Exception e) {
-                    logger.info("Exception while checking fields"+e.getMessage());
+                    logger.info("Exception while checking fields" + e.getMessage());
                 }
             }
             model.setViewName("errorsAndsuccess/error");
@@ -52,16 +52,38 @@ public class UserController {
             return model;
         }
         logger.info(user);
-        Map<String, String> map = userService.register(user,file);
+        Map<String, String> map = userService.register(user, file);
         Map.Entry<String, String> entry = map.entrySet().iterator().next();
         String key = entry.getKey();
         String value = entry.getValue();
-        logger.debug("value of key(ViewName) in UserController"+key+"value of value(message) in UserController"+value);
+        logger.debug("value of key(ViewName) in UserController" + key + "value of value(message) in UserController" + value);
         model.setViewName(key);
         model.addObject("message", value);
-        logger.info("value of model"+model);
+        logger.info("value of model" + model);
         return model;
     }
+
+    @RequestMapping(value = "/showDashboard", method = RequestMethod.GET)
+    public ModelAndView showDashboard(ModelAndView modelAndView, HttpSession session) {
+        int id = session.getAttribute("userId")!=null?(Integer)session.getAttribute("userId"):0;
+        if (id != 0) {
+            System.out.println("in dashboard method");
+            modelAndView.setViewName("profile/dashboard");
+        } else {
+            modelAndView.addObject("message", "Please login through form");
+            modelAndView.setViewName("redirect: /home");
+        }
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public ModelAndView logout(ModelAndView modelAndView, HttpSession session) {
+        userService.signout(session);
+        modelAndView.setViewName("redirect:/home");
+        modelAndView.addObject("message","You have logged out successfully");
+        return modelAndView;
+    }
+
 
 }
 
