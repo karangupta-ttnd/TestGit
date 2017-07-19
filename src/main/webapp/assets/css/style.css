@@ -3,161 +3,169 @@ body {
     padding: 30px;
 }
 
-.row.header{
+.row.header {
     margin-top: 10px;
-    border-radius:6px;
-    border:2px solid;
-}   
+    border-radius: 6px;
+    border: 2px solid;
+}
 
-.link{
+.link {
     color: blue;
 }
 
-.new-file
-{
+.new-file {
     width: 20px;
     height: 20px;
 }
-.search-bar input{
-    font-style:italic;
-    padding-top:1px;
-    padding-bottom:1px;
-    border:none !important;
+
+.search-bar input {
+    font-style: italic;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border: none !important;
 }
 
 .search-bar.pull-right {
     margin-right: 10px;
-    margin-top:19px; 
-    border-radius:10px;
-    border:2px solid black ;
+    margin-top: 19px;
+    border-radius: 10px;
+    border: 2px solid black;
 }
 
-.search-bar.decrease-margin{
-        margin-top:0px; 
+.search-bar.decrease-margin {
+    margin-top: 0px;
 
 }
 
-
-#search-logo{
-    padding-left:5px;
+#search-logo {
+    padding-left: 5px;
 }
 
-#remove-sign{
-    padding-right:5px;
+#remove-sign {
+    padding-right: 5px;
 }
 
-.top-right-links{ 
-    display:inline-block;
-    margin-top:19px; 
-    font-size: 20px ;
+.top-right-links {
+    display: inline-block;
+    margin-top: 19px;
+    font-size: 20px;
 }
-
 
 .glyphicon.glyphicon-user.smallIcon {
     font-size: 20px;
-    border:none ;  
+    border: none;
 }
 
-
-.user-name{
+.user-name {
     font-size: 15px;
 }
 
-
-.panel.panel-default{
-  border:3px solid black;
-}
-.panel-body{
-    border-top:2px solid black;
+.panel.panel-default {
+    border: 3px solid black;
 }
 
-#recent_shares{
+.panel-body {
+    border-top: 2px solid black;
+}
+
+#recent_shares {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-
-.row-buffer { margin-top:20px; }
+.row-buffer {
+    margin-top: 20px;
+}
 
 .glyphicon.glyphicon-user {
     font-size: 110px;
-    border:2px solid gray; 
-    color:gray; 
+    border: 2px solid gray;
+    color: gray;
 }
 
+.profilePic{
+    height: 110px;
+    width: 110px;
+}
 
-.twitter-handler{
+.twitter-handler {
     padding-left: 10px;
     color: grey;
 }
 
-.row.links{
+.row.links {
     padding-top: 5px;
 }
 
-.fa{
-    padding-left:2px;
-     padding-right:2px;
+.fa {
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
+#top_posts {
 
-#top_posts{
-     
-     margin-top: 10px;
-     margin-bottom: 10px;
-}
-
-
-
-#recent_shares{
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-#subscribers-detail{
-
-	margin-top: 10px;
-   margin-bottom: 10px;
-}
-
-
-
-#login{ 
+#recent_shares {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-#forgot_pwd{
-    padding-top:10px;
+#subscribers-detail {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.btn.btn-submit{
-    border:2px solid black;
+#login {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#forgot_pwd {
+    padding-top: 10px;
+}
+
+.btn.btn-submit {
+    border: 2px solid black;
     border-radius: 5px;
-    padding-top:0px;
-    padding-bottom:0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
-input[type=text],input[type=email],input[type=password],input[type=file]{
-     border:2px solid black;
+input[type=text], input[type=email], input[type=password], input[type=file] {
+    border: 2px solid black;
+}
+
+#register {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    resize: none;
+}
+
+.error_msg {
+    color: red;
+    font-size:15px;
+}
+
+.messageBox {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
 
-#register{
-     
-     margin-top: 10px;
-     margin-bottom: 10px;
-}
 
-
-textarea{
-	 resize: none;
-}
 
 /*Modals*/
 
-
-.select-border{
+.select-border {
     border: 2px solid black !important;
     border-radius: 3px;
 }
