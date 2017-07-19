@@ -7,11 +7,11 @@ import java.util.Date;
  */
 public class ResourceDTO {
 
-    String description;
-    UserDTO createdBy;
-    TopicDTO topicDTO;
-    Date dateCreated;
-    Date lastUpdated;
+    private String description;
+    private UserDTO createdBy;
+    private TopicDTO topicDTO;
+    private Date dateCreated;
+    private Date lastUpdated;
 
     public String getDescription() {
         return description;

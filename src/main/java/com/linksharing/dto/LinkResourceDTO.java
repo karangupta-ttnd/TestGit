@@ -5,7 +5,7 @@ package com.linksharing.dto;
  */
 public class LinkResourceDTO {
 
-    String url;
+    private String url;
 
     public String getUrl() {
         return url;

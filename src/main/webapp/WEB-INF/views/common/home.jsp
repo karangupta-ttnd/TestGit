@@ -1,6 +1,8 @@
+<%@ page import="antlr.StringUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isELIgnored="false" %>
 
 <!DOCTYPE html>
 <html>
@@ -166,17 +168,25 @@
             </div>
         </div>
         <div class="col-md-4">
+
+            <div class="row">
+                <div class="col-md-12 messageBox">
+                    <div class="error_msg"><span><%=org.springframework.util.StringUtils.isEmpty(request.getParameter("message"))?"":"Attention:"+request.getParameter("message")%></span></div>
+                </div>
+            </div>
+
             <div class="row">
                 <div id="login" class="panel panel-default">
                     <div class="panel-heading">Login</div>
                     <div class="panel-body">
-                        <form class="form-horizontal">
+                        <form:form class="form-horizontal" modelAttribute="userLogin" action="/login" name="login_form"  method="post">
                             <div class="form-group">
                                 <label class="control-label col-md-5" for="user_email">
                                     <span class="pull-left">Email/Username *</span>
                                 </label>
                                 <div class="col-md-7">
-                                    <input type="email" class="form-control" id="user_email">
+                                    <form:input type="email" class="form-control" id="user_email" path="loginId"/><br>
+                                    <span class="error_msg"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -184,7 +194,9 @@
                                     <span class="pull-left"> Password * </span>
                                 </label>
                                 <div class="col-md-7 ">
-                                    <input type="password" class="form-control" id="user_pwd">
+                                    <form:input type="password" class="form-control" id="user_pwd"
+                                                path="loginPass"/><br>
+                                    <span class="error_msg"></span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -196,9 +208,8 @@
                                 <div class="col-md-6">
                                     <span class="pull-right"><button type="submit" class="btn btn-submit">Login</button></span>
                                 </div>
-
                             </div>
-                        </form>
+                        </form:form>
                     </div>
                 </div>
             </div>
@@ -206,15 +217,15 @@
                 <div id="register" class="panel panel-default">
                     <div class="panel-heading">Register</div>
                     <div class="panel-body">
-                        <form:form class="form-horizontal" action="/register" method="POST" name="register_form" modelAttribute="user"
-                                   enctype="multipart/form-data" >
+                       <form:form class="form-horizontal" action="/register" method="POST" name="register_form" modelAttribute="userRegister" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label class="control-label col-md-5" for="first_name">
                                     <span class="pull-left"> First Name *  </span>
                                 </label>
                                 <div class="col-md-7">
-                                    <form:input type="text" class="form-control" id="first_name" path="firstName" required="required" /><br>
+                                    <form:input type="text" class="form-control" id="first_name" path="firstName"
+                                                required="required"/><br>
                                     <span class="error_msg"></span>
                                 </div>
                             </div>
@@ -223,7 +234,8 @@
                                     <span class="pull-left"> Last Name *  </span>
                                 </label>
                                 <div class="col-md-7">
-                                    <form:input type="text" class="form-control" id="last_name" name="lastName" path="lastName" required="required"/><br>
+                                    <form:input type="text" class="form-control" id="last_name" path="lastName"
+                                                required="required"/><br>
                                     <span class="error_msg"></span>
                                 </div>
                             </div>
@@ -232,7 +244,8 @@
                                     <span class="pull-left">   Email *  </span>
                                 </label>
                                 <div class="col-md-7">
-                                    <form:input type="email" class="form-control" id="email" path="email" required="required" /><br>
+                                    <form:input type="email" class="form-control" id="email" path="email"
+                                                required="required"/><br>
                                     <span class="error_msg"></span>
                                 </div>
                             </div>
@@ -241,7 +254,8 @@
                                     <span class="pull-left">  Username *  </span>
                                 </label>
                                 <div class="col-md-7">
-                                    <form:input type="text" class="form-control" id="user_name" path="username" required="required" /><br>
+                                    <form:input type="text" class="form-control" id="user_name" path="username"
+                                                required="required"/><br>
                                     <span class="error_msg"></span>
                                 </div>
                             </div>
@@ -250,7 +264,8 @@
                                     <span class="pull-left">  Password *  </span>
                                 </label>
                                 <div class="col-md-7 ">
-                                    <form:input type="password" class="form-control" id="pwd" path="password" required="required"/><br>
+                                    <form:input type="password" class="form-control" id="pwd" path="password"
+                                                required="required"/><br>
                                     <span class="error_msg"></span>
                                 </div>
                             </div>
@@ -259,7 +274,7 @@
                                     <span class="pull-left"> Confirm Password*  </span>
                                 </label>
                                 <div class="col-md-7 ">
-                                    <input type="password" class="form-control" id="confirm_pwd" required><br>
+                                    <input type="password" class="form-control" id="confirm_pwd" name="confirm_pwd" required><br>
                                     <span class="error_msg"></span>
                                 </div>
                             </div>
@@ -268,7 +283,7 @@
                                     <span class="pull-left"> Photo </span>
                                 </label>
                                 <div class="col-md-7 ">
-                                    <form:input type="file" class="form-control" id="user_photo" path="multipartFile" />
+                                    <form:input type="file" class="form-control" id="user_photo" path="multipartFile"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -338,8 +353,8 @@
         $("form[name='register_form']").validate({
             // Specify validation rules
             rules: {
-                first_name: "required",
-                lastname: "required",
+                firstName: "required",
+                lastName: "required",
                 email: {
                     required: true,
                     email: true
@@ -348,11 +363,10 @@
                 password: {
                     required: true,
                     minlength: 5,
-                    equalTo: "#confirm_password"
-                },confirm_password: {
+                }, confirm_pwd: {
                     required: true,
                     minlength: 5,
-                    equalTo: "#password"
+                    equalTo: "#pwd"
                 }
             },
             // Specify validation error messages
@@ -364,14 +378,36 @@
                     minlength: "Your password must be at least 5 characters long"
                 },
                 email: "Please enter a valid email address",
-                confirm_password: "Password should match",
+                confirm_pwd: "Password should match",
             },
-            // Make sure the form is submitted to the destination defined
-            // in the "action" attribute of the form when valid
-            submitHandler: function(form) {
+            submitHandler: function (form) {
                 form.submit();
             }
         });
+
+        $("form[name='login_form']").validate({
+            // Specify validation rules
+            rules: {
+                loginId: "required",
+                loginPass: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+            // Specify validation error messages
+            messages: {
+                loginId: "Please enter your EmailID or Username",
+                password: {
+                    required: "Please provide a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+            },
+            submitHandler: function (form) {
+                form.submit();
+            }
+        });
+
+
     });
 
 </script>
