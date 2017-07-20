@@ -2,7 +2,7 @@ package com.linksharing.model.services.impl;
 
 import com.linksharing.dto.LoginDTO;
 import com.linksharing.dto.UserDTO;
-import com.linksharing.model.dao.impl.UserDAOImpl;
+import com.linksharing.model.dao.interfaces.UserDAO;
 import com.linksharing.model.entities.User;
 import com.linksharing.model.services.interfaces.UserService;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
@@ -26,9 +26,9 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDAOImpl userDAOImpl;
+    private UserDAO userDAO;
 
-    private static final Logger logger = Logger.getLogger(UserService.class);
+    private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 
 
     public Map<String, String> register(UserDTO userdto, MultipartFile file) {
@@ -38,10 +38,10 @@ public class UserServiceImpl implements UserService {
             User user = new User(userdto);
             user.setPhoto(userdto.getMultipartFile().getBytes());
             User someUser;
-            someUser = userDAOImpl.getUserByEmailandUsername(user.getEmail(), user.getUsername());
+            someUser = userDAO.getUserByEmailandUsername(user.getEmail(), user.getUsername());
             if (someUser == null) {
                 user.setActive(true);
-                userDAOImpl.saveUser(user);
+                userDAO.saveUser(user);
                 mp.put("errorsAndsuccess/success", "You have registered successfully <br> Click <a href=\"home\">here</a> to go back.");
                 return mp;
             } else {
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
     public int login(LoginDTO loginDTO, HttpSession session) {
         Map mp = new LinkedHashMap<String, String>();
         try {
-            User user = userDAOImpl.getRegisteredUser(loginDTO.getLoginId(), loginDTO.getLoginPass());
+            User user = userDAO.getRegisteredUser(loginDTO.getLoginId(), loginDTO.getLoginPass());
             if (user != null) {
                 if (!user.getActive()) {
                     return 1;
@@ -81,6 +81,10 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             return 4;
         }
+    }
+
+    public UserDTO getUser(int id){
+        return new UserDTO(userDAO.getUserById(id));
     }
 
     public void signout(HttpSession session) {

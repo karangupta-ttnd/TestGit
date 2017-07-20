@@ -1,5 +1,7 @@
 package com.linksharing.model.entities;
 
+import com.linksharing.dto.ResourceDTO;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -32,6 +34,26 @@ public abstract class Resource {
     @Column(nullable = false)
     private Date lastUpdated;
 
+    public Resource(){}
+
+   public Resource(ResourceDTO resourceDTO){
+        if(resourceDTO!=null) {
+            this.createdBy = resourceDTO.getCreatedBy();
+            this.dateCreated = resourceDTO.getDateCreated();
+            this.description = resourceDTO.getDescription();
+            this.id = resourceDTO.getId();
+            this.lastUpdated = resourceDTO.getLastUpdated();
+            this.topic = resourceDTO.getTopic();
+        }
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;

@@ -1,6 +1,8 @@
 package com.linksharing.dto;
 
 import com.linksharing.enums.Visibility;
+import com.linksharing.model.entities.Topic;
+import com.linksharing.model.entities.User;
 
 import java.util.Date;
 
@@ -12,10 +14,24 @@ public class TopicDTO {
 
     private Integer id;
     private String name;
-    private UserDTO createdBy;
+    private User createdBy;
     private Date dateCreated;
     private Date lastUpdated;
     private Visibility visibility;
+
+    public TopicDTO() {
+    }
+
+    public TopicDTO(Topic topic) {
+        this.id = topic.getId();
+        this.createdBy = topic.getCreatedBy();
+        this.dateCreated = topic.getDateCreated();
+        this.lastUpdated = topic.getLastUpdated();
+        this.name = topic.getName();
+        this.visibility = topic.getVisibility();
+
+    }
+
 
     public Visibility getVisibility() {
         return visibility;
@@ -33,11 +49,19 @@ public class TopicDTO {
         this.name = name;
     }
 
-    public UserDTO getCreatedBy() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public User getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(UserDTO createdBy) {
+    public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
     }
 

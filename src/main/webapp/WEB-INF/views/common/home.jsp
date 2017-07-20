@@ -345,71 +345,8 @@
 </div>
 
 <script type="text/javascript" src="/assets/js/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="/assets/js/script.js"></script>
 <script type="text/javascript" src="/assets/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/assets/js/script.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-    $(function () {
-        $("form[name='register_form']").validate({
-            // Specify validation rules
-            rules: {
-                firstName: "required",
-                lastName: "required",
-                email: {
-                    required: true,
-                    email: true
-                },
-                username: "required",
-                password: {
-                    required: true,
-                    minlength: 5,
-                }, confirm_pwd: {
-                    required: true,
-                    minlength: 5,
-                    equalTo: "#pwd"
-                }
-            },
-            // Specify validation error messages
-            messages: {
-                firstname: "Please enter your firstname",
-                lastname: "Please enter your lastname",
-                password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long"
-                },
-                email: "Please enter a valid email address",
-                confirm_pwd: "Password should match",
-            },
-            submitHandler: function (form) {
-                form.submit();
-            }
-        });
-
-        $("form[name='login_form']").validate({
-            // Specify validation rules
-            rules: {
-                loginId: "required",
-                loginPass: {
-                    required: true,
-                    minlength: 5
-                }
-            },
-            // Specify validation error messages
-            messages: {
-                loginId: "Please enter your EmailID or Username",
-                password: {
-                    required: "Please provide a password",
-                    minlength: "Your password must be at least 5 characters long"
-                },
-            },
-            submitHandler: function (form) {
-                form.submit();
-            }
-        });
-
-
-    });
-
-</script>
 </body>
 </html>
