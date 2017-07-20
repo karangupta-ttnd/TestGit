@@ -17,5 +17,6 @@ public interface UserService {
    void signout(HttpSession session);
    void forgotPassword();
    void updateProfileDetails();
+   UserDTO getUser(int id);
 
 }

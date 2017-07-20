@@ -1,5 +1,8 @@
 package com.linksharing.model.entities;
 
+import com.linksharing.dto.TopicDTO;
+import com.linksharing.enums.Visibility;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -18,7 +21,7 @@ public class Topic {
     @Column(nullable = false, length = 50)
     private String name;
 
-    @ManyToOne(targetEntity = User.class,optional = false )
+    @ManyToOne(targetEntity = User.class, optional = false)
     private User createdBy;
 
     @Column(nullable = false)
@@ -29,6 +32,28 @@ public class Topic {
 
     @Column(nullable = false)
     private Visibility visibility;
+
+    public Topic() {
+    }
+
+    public Topic(TopicDTO topicDTO) {
+        if (topicDTO != null) {
+            this.createdBy = topicDTO.getCreatedBy();
+            this.dateCreated = topicDTO.getDateCreated();
+            this.id = topicDTO.getId();
+            this.lastUpdated = topicDTO.getLastUpdated();
+            this.name = topicDTO.getName();
+            this.visibility = topicDTO.getVisibility();
+        }
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Visibility getVisibility() {
         return visibility;

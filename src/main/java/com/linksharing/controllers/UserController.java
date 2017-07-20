@@ -1,12 +1,14 @@
 package com.linksharing.controllers;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.linksharing.dto.UserDTO;
+import com.linksharing.model.services.interfaces.TopicService;
 import com.linksharing.model.services.interfaces.UserService;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -28,6 +30,10 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    TopicService topicService;
+
     MessageSource messageSource;
     private static final Logger logger = Logger.getLogger(UserController.class);
 
@@ -65,10 +71,15 @@ public class UserController {
 
     @RequestMapping(value = "/showDashboard", method = RequestMethod.GET)
     public ModelAndView showDashboard(ModelAndView modelAndView, HttpSession session) {
-        int id = session.getAttribute("userId")!=null?(Integer)session.getAttribute("userId"):0;
+        int id = session.getAttribute("userId") != null ? (Integer) session.getAttribute("userId") : 0;
         if (id != 0) {
-            System.out.println("in dashboard method");
-            modelAndView.setViewName("profile/dashboard");
+            try {
+                System.out.println("in dashboard method");
+                modelAndView.setViewName("profile/dashboard");
+                modelAndView.addObject("topicList",topicService.getAllTopics(id));
+            } catch (Exception e) {
+                System.out.print("Exception in showDashboard() in UserController"+e);
+            }
         } else {
             modelAndView.addObject("message", "Please login through form");
             modelAndView.setViewName("redirect: /home");
@@ -80,7 +91,7 @@ public class UserController {
     public ModelAndView logout(ModelAndView modelAndView, HttpSession session) {
         userService.signout(session);
         modelAndView.setViewName("redirect:/home");
-        modelAndView.addObject("message","You have logged out successfully");
+        modelAndView.addObject("message", "You have logged out successfully");
         return modelAndView;
     }
 

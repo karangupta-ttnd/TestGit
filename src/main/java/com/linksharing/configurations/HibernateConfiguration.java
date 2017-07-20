@@ -67,6 +67,8 @@ public class HibernateConfiguration {
         properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
         properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        properties.put("hibernate.dbcp.initialSize",env.getProperty("hibernate.poolsize"));
+        properties.put("hibernate.dbcp.maxActive",env.getProperty("hibernate.maxActive"));
         return properties;
     }
 }

@@ -1,5 +1,6 @@
 package com.linksharing.model.entities;
 
+import com.linksharing.enums.SeriousnessType;
 import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;

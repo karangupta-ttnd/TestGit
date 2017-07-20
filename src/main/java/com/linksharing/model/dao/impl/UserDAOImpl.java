@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.jws.soap.SOAPBinding;
-
 /**
  * Created by karan on 11/7/17.
  */
@@ -59,5 +57,11 @@ public class UserDAOImpl implements UserDAO {
             user = (User) queryResult;
         return user;
     }
+
+    public User getUserById(int id){
+        Session session = sessionFactory.openSession();
+        return (User)session.get(User.class,id);
+    }
+
 
 }
