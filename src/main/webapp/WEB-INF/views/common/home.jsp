@@ -37,74 +37,7 @@
                     <div id="recent_shares" class="panel panel-default">
                         <div class="panel-heading"><span>Recent Shares</span></div>
                         <div class="panel-body">
-                            <div class="row row-buffer">
-                                <div class="col-md-2">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <strong> <span class="username">Uday Pratap Singh</span></strong>
-                                            <span class="twitter-handler">@uday 5min</span>
-                                        </div>
-                                        <div class="col-md-2 pull-right">
-                                            <span><a href="#" class="link"> Grails</a></span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book.
-                                        </div>
-                                    </div>
-                                    <div class="row links">
-                                        <div class="col-md-10">
-                                            <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
-                                            <i class="fa fa-twitter  fa-2x" aria-hidden="true"></i>
-                                            <i class="fa fa-google-plus  fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="col-md-2 pull-right">
-                                            <span><u><a href="#" class="link"> View Posts</a></u></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-buffer">
-                                <div class="col-md-2">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                </div>
-                                <div class="col-md-10">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <strong> <span class="username">Uday Pratap Singh</span></strong>
-                                            <span class="twitter-handler">@uday 10 min</span>
-                                        </div>
-                                        <div class="col-md-2 pull-right">
-                                            <span><a href="#" class="link"> Grails</a></span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                                            1500s, when an unknown printer took a galley of type and scrambled it to
-                                            make a type specimen book.
-                                        </div>
-                                    </div>
-                                    <div class="row links">
-                                        <div class="col-md-10">
-                                            <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
-                                            <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
-                                            <i class="fa fa-google-plus  fa-2x" aria-hidden="true"></i>
-                                        </div>
-                                        <div class="col-md-2 pull-right">
-                                            <span><u><a href="#" class="link"> View Posts</a></u></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <%@ include file="../pageComponent/share.jsp" %>
                         </div>
                     </div>
                 </div>
@@ -168,13 +101,12 @@
             </div>
         </div>
         <div class="col-md-4">
-
-            <div class="row">
-                <div class="col-md-12 messageBox">
-                    <div class="error_msg"><span><%=org.springframework.util.StringUtils.isEmpty(request.getParameter("message"))?"":"Attention:"+request.getParameter("message")%></span></div>
-                </div>
-            </div>
-
+            <% if (!(org.springframework.util.StringUtils.isEmpty(request.getParameter("message")))) {
+                out.print("<div class=\"row\" >" +
+                        "<div class=\"col-md-12 messageBox\" >" +
+                        "<div class=\"error_msg\" ><span > Attention: "+ request.getParameter("message") +"</span ></div >" +
+                        "</div ></div >");
+            }%>
             <div class="row">
                 <div id="login" class="panel panel-default">
                     <div class="panel-heading">Login</div>

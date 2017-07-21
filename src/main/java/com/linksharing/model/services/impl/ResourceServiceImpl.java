@@ -41,7 +41,6 @@ public class ResourceServiceImpl implements ResourceService {
             linkresourceDTO.setCreatedBy(user);
             linkresourceDTO.setDateCreated(new Date());
             linkresourceDTO.setLastUpdated(new Date());
-//            System.out.println(">>>>>>" + linkresourceDTO.toString());
             LinkResource linkResource = new LinkResource(linkresourceDTO);
             resourceDAO.addLinkResource(linkResource);
             return 1;
@@ -89,6 +88,14 @@ public class ResourceServiceImpl implements ResourceService {
         }else{
             return 2;
         }
+
+    }
+
+    public void downloadResource() {
+
+    }
+
+    public void downloadResource() {
 
     }
 

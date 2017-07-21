@@ -14,4 +14,6 @@ import javax.mail.Multipart;
 public interface ResourceService {
     int addLinkResource(LinkResourceDTO linkResourceDTO, UserDTO userDTO);
     int addDocumentResource(MultipartFile multipartFile,int topicId,String description, UserDTO userDTO);
+    void downloadResource();
+
 }
