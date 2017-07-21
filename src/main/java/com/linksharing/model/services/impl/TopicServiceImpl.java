@@ -1,5 +1,6 @@
 package com.linksharing.model.services.impl;
 
+import com.linksharing.dto.RecentShareDTO;
 import com.linksharing.dto.TopicDTO;
 import com.linksharing.dto.UserDTO;
 import com.linksharing.model.dao.interfaces.TopicDAO;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +31,17 @@ public class TopicServiceImpl implements TopicService {
         return false;
     }
 
-    public TopicDTO getRecentPublicTopic(){
-
+    public List<RecentShareDTO> getRecentPublicTopic() {
+        List<Object> dataList = new ArrayList<Object>(topicDAO.getRecentPublicTopics());
+        List<RecentShareDTO> recentPublicTopicList = new ArrayList<RecentShareDTO>();
+        for (Object o : dataList) {
+            try {
+                recentPublicTopicList.add(new RecentShareDTO(o));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return recentPublicTopicList;
     }
 
     public int addTopic(TopicDTO topicDTO, UserDTO userDTO) {
@@ -55,7 +66,6 @@ public class TopicServiceImpl implements TopicService {
 
     public Topic getTopic(int id){
         return (topicDAO.getTopicById(id));
-
     }
 
     public List<Topic> getAllTopics(int id) {
