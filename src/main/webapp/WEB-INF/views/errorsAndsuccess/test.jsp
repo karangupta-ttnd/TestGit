@@ -14,9 +14,11 @@
     <title>Title</title>
 </head>
 <body>
-<c:forEach items="${topicList}" var="topic">
-    <c:out value="${topic.lastUpdated},"/>
-    <c:out value="${topic.name}"/>
-</c:forEach>
+<%--<c:forEach items="${topicList}" var="topic">--%>
+    <%--<c:out value="${topic.lastUpdated},"/>--%>
+    <%--<c:out value="${topic.name}"/>--%>
+<%--</c:forEach>--%>
+<%=request.getAttribute("id")+"attr"%>
+<%=request.getParameter("id")+"para"%>
 </body>
 </html>
