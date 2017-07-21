@@ -13,11 +13,15 @@ $(function () {
             username: "required",
             password: {
                 required: true,
-                minlength: 5,
-            }, confirm_pwd: {
+                minlength: 5
+            },
+            confirm_pwd: {
                 required: true,
                 minlength: 5,
                 equalTo: "#pwd"
+            },
+            user_photo:{
+                accept: "image/*"
             }
         },
         // Specify validation error messages
@@ -30,6 +34,7 @@ $(function () {
             },
             email: "Please enter a valid email address",
             confirm_pwd: "Password should match",
+            user_photo:"Accepts only image file"
         },
         submitHandler: function (form) {
             form.submit();
@@ -51,7 +56,7 @@ $(function () {
             password: {
                 required: "Please provide a password",
                 minlength: "Your password must be at least 5 characters long"
-            },
+            }
         },
         submitHandler: function (form) {
             form.submit();
@@ -140,9 +145,11 @@ function some() {
 $("#saveTopic").click(function () {
 
     // if ($("add_topic_form").valid()) {
-        var Topic = {};
-        Topic.name = $("#topicName").val();
-        Topic.visibility = $("#visibility").val();
+        var Topic = {
+            name : $("#topicName").val(),
+            visibility : $("#visibility").val()
+        };
+
 
         $.ajax({
             url: "/add_new_topic",

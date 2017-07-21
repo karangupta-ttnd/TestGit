@@ -1,5 +1,6 @@
 package com.linksharing.model.entities;
 
+import com.linksharing.dto.SubscriptionsDTO;
 import com.linksharing.enums.SeriousnessType;
 import org.hibernate.annotations.ManyToAny;
 
@@ -31,6 +32,18 @@ public class Subscriptions {
     @Column(nullable = false)
     private Date dateCreated;
 
+    public Subscriptions(){}
+
+    public Subscriptions(SubscriptionsDTO subscriptionsDTO){
+        if (subscriptionsDTO!=null) {
+            this.id = subscriptionsDTO.getId();
+            this.user = subscriptionsDTO.getUser();
+            this.topic = subscriptionsDTO.getTopic();
+            this.seriousness = subscriptionsDTO.getSeriousness();
+            this.dateCreated = subscriptionsDTO.getDateCreated();
+        }
+    }
+    
     public User getUser() {
         return user;
     }
@@ -61,5 +74,13 @@ public class Subscriptions {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

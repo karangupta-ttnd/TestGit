@@ -45,7 +45,8 @@ public class ResourceServiceImpl implements ResourceService {
             resourceDAO.addLinkResource(linkResource);
             return 1;
         } catch (Exception e) {
-            System.out.print("Exception" + e);
+            System.out.print("addTopicURL() in ResourceServiceImpl");
+            e.printStackTrace();
             return 2;
         }
 
@@ -76,17 +77,17 @@ public class ResourceServiceImpl implements ResourceService {
                 documentResourceDTO.setLastUpdated(new Date());
                 documentResourceDTO.setDescription(description);
                 documentResourceDTO.setFilePath(serverFile.getAbsolutePath());
-//                System.out.println(">>>>>>" + documentResourceDTO.toString());
                 DocumentResource documentResource=new DocumentResource(documentResourceDTO);
                 resourceDAO.addDocumentResource(documentResource);
 
                 return 1;
             } catch (Exception e) {
-                System.out.println(e);
+                System.out.println("addDocumentResource() in ResourceDAOImpl");
+                e.printStackTrace();
                 return 2;
             }
         }else{
-            return 2;
+            return 3;
         }
 
     }
@@ -95,9 +96,6 @@ public class ResourceServiceImpl implements ResourceService {
 
     }
 
-    public void downloadResource() {
-
-    }
 
     private String getUniqueFileName(String fileName){
         int i=fileName.lastIndexOf('.');

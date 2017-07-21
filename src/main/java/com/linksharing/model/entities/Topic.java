@@ -94,4 +94,16 @@ public class Topic {
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", createdBy=" + createdBy +
+                ", dateCreated=" + dateCreated +
+                ", lastUpdated=" + lastUpdated +
+                ", visibility=" + visibility +
+                '}';
+    }
 }

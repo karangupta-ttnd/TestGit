@@ -22,29 +22,22 @@ public class ResourceDAOImpl implements ResourceDAO {
 
     @Transactional
     public void addLinkResource(LinkResource linkResource){
-        try {
+
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.save(linkResource);
             session.getTransaction().commit();
             session.close();
-        } catch (HibernateException e) {
-            System.out.println("addTopicURL() in TopicDAOImpl" + e);
-        }
     }
 
 
     @Transactional
-    public void addDocumentResource(DocumentResource documentResource){
-        try {
-            Session session = sessionFactory.openSession();
-            session.beginTransaction();
-            session.save(documentResource);
-            session.getTransaction().commit();
-            session.close();
-        } catch (HibernateException e) {
-            System.out.println("addDocumentResource() in ResourceDAOImpl" + e);
-        }
-    }
+    public void addDocumentResource(DocumentResource documentResource) {
 
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(documentResource);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

@@ -19,7 +19,7 @@ import java.util.List;
  * Created by karan on 19/7/17.
  */
 @Repository("TopicDAOImpl")
-public class TopicDAOImpl implements TopicDAO{
+public class TopicDAOImpl implements TopicDAO {
 
     @Autowired
     SessionFactory sessionFactory;
@@ -27,16 +27,13 @@ public class TopicDAOImpl implements TopicDAO{
     private static final Logger logger = Logger.getLogger(TopicDAOImpl.class);
 
     @Transactional
-    public void addTopic(Topic topic) {
-        try {
-            Session session = sessionFactory.openSession();
-            session.beginTransaction();
-            session.save(topic);
-            session.getTransaction().commit();
-            session.close();
-        } catch (HibernateException e) {
-            logger.info("addTopic() in TopicDAOImpl" + e);
-        }
+    public int addTopic(Topic topic) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        int id=(Integer)session.save(topic);
+        session.getTransaction().commit();
+        session.close();
+        return id;
     }
 
 
@@ -45,27 +42,32 @@ public class TopicDAOImpl implements TopicDAO{
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("FROM Topic topic WHERE topic.createdBy=:id ").setInteger("id", id);
         List<Topic> topicList = query.list();
-        if (topicList != null)
-            System.out.println(">>>>>"+topicList);
-
-        logger.info(topicList);
-        System.out.println(">>>"+topicList);
+        System.out.println(">>>" + topicList);
+        session.close();
         return topicList;
 
     }
 
-    public Topic getTopicById(int id){
-        Topic topic=null;
+    public Topic getTopicById(int id) {
+        Topic topic = null;
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("FROM Topic topic WHERE topic.id=:id ").setInteger("id", id);
-        Object queryResult=query.uniqueResult();
+        Object queryResult = query.uniqueResult();
         if (queryResult != null)
             topic = (Topic) queryResult;
+        session.close();
         return topic;
 
     }
 
 
+    public List<Object> getRecentPublicTopics() {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("FROM Resource r WHERE r.topic.visibility=0 ORDER BY r.lastUpdated DESC").setMaxResults(5);
+        List<Object> recentPublicTopicList = query.list();
+        session.close();
+        return recentPublicTopicList;
+    }
 
 
 }

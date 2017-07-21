@@ -26,15 +26,12 @@ public class UserDAOImpl implements UserDAO {
 
     @Transactional
     public void saveUser(User user) {
-        try {
-            Session session = sessionFactory.openSession();
-            session.beginTransaction();
-            session.save(user);
-            session.getTransaction().commit();
-            session.close();
-        } catch (HibernateException e) {
-            logger.info("saveUser() in UserDAOImpl" + e);
-        }
+
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
+        session.close();
 
     }
 
@@ -45,22 +42,27 @@ public class UserDAOImpl implements UserDAO {
         Object queryResult = query.uniqueResult();
         if (queryResult != null)
             user = (User) queryResult;
+        session.close();
         return user;
     }
 
-    public User getRegisteredUser(String email, String password){
-        User user=null;
+    public User getRegisteredUser(String email, String password) {
+        User user = null;
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from User where email =:email or username=:uname and password=:pass and active=1").setString("email", email).setString("uname", email).setString("pass",password);
+        Query query = session.createQuery("from User where email =:email or username=:uname and password=:pass and active=1").setString("email", email).setString("uname", email).setString("pass", password);
         Object queryResult = query.uniqueResult();
         if (queryResult != null)
             user = (User) queryResult;
+        session.close();
         return user;
     }
 
-    public User getUserById(int id){
+    public User getUserById(int id) {
         Session session = sessionFactory.openSession();
-        return (User)session.get(User.class,id);
+        User user = (User) session.get(User.class, id);
+        session.close();
+        return user;
+
     }
 
 
