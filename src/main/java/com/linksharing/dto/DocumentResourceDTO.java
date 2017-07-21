@@ -19,6 +19,7 @@ public class DocumentResourceDTO extends ResourceDTO {
     }
 
     public DocumentResourceDTO(){}
+
     public DocumentResourceDTO(DocumentResource documentResource){
         super(documentResource);
         this.filePath=documentResource.getFilePath();
