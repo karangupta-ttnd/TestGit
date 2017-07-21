@@ -29,6 +29,10 @@ public class TopicServiceImpl implements TopicService {
         return false;
     }
 
+    public TopicDTO getRecentPublicTopic(){
+
+    }
+
     public int addTopic(TopicDTO topicDTO, UserDTO userDTO) {
         Topic topic = new Topic(topicDTO);
         User user = new User(userDTO);
