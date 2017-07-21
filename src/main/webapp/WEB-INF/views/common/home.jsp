@@ -1,9 +1,8 @@
-<%@ page import="antlr.StringUtils" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +36,9 @@
                     <div id="recent_shares" class="panel panel-default">
                         <div class="panel-heading"><span>Recent Shares</span></div>
                         <div class="panel-body">
-                            <%@ include file="../pageComponent/share.jsp" %>
+                            <c:forEach items="${recentPublicTopicList}" var="data">
+                                <%@ include file="../pageComponent/share.jsp" %>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
