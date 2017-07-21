@@ -23,17 +23,19 @@ public class DBtest {
 
     @Autowired
     SessionFactory sessionFactory;
+
     private static final Logger logger = Logger.getLogger(DBtest.class);
 
 
     @RequestMapping(value={"test"}, method = RequestMethod.GET)
     public String getRecentPublicTopics(Model model){
         Session session = sessionFactory.openSession();
-//        Query query = session.createQuery("select" +
-//                " user.id,user.photo,user.firstName,user.lastName,topic.id,topic.name,topic.dateCreated" +
-//                " FROM Topic topic inner join topic.createdBy as user" +
-//                " WHERE visibility=0 " +
-//                "ORDER BY topic.dateCreated DESC").setMaxResults(5);
+
+        Query query = session.createQuery("FROM Resource r WHERE r.topic.visibility=0 ORDER BY r.lastUpdated DESC").setMaxResults(5);
+        List<Object> topicList =query.list();
+        model.addAttribute("topicList",topicList);
+        session.close();
+
         Query query = session.createQuery(
                 " FROM Topic topic " +
                 " WHERE visibility=0 " +
@@ -42,6 +44,7 @@ public class DBtest {
         List<Object> topicList =query.list();
         model.addAttribute("topicList",topicList);
         session.close();
+
 
         return "errorsAndsuccess/test";
     }
