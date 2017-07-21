@@ -31,14 +31,13 @@ public class HomeController {
 
 
     @RequestMapping(value={"/home","/"}, method = RequestMethod.GET)
-    public String viewHome(Model model, HttpSession session, HttpServletRequest request,ModelAndView modelAndView){
+    public String viewHome(Model model, HttpSession session, HttpServletRequest request){
 //        mailService.sendEmail("karan.gupta@tothenew.com");
         int id = session.getAttribute("userId")!=null?(Integer)session.getAttribute("userId"):0;
         if (id != 0) {
             return "redirect: /showDashboard";
         } else {
             request.setAttribute("recentPublicTopicList",topicService.getRecentPublicTopic());
-            modelAndView.addObject("recentPublicTopicList",topicService.getRecentPublicTopic());
             model.addAttribute("userRegister", new UserDTO());
             model.addAttribute("userLogin",new LoginDTO());
             return "/common/home";

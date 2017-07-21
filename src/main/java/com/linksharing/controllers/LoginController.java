@@ -67,7 +67,7 @@ public class LoginController {
                 break;
             case 3:
                 model.setViewName("errorsAndsuccess/error");
-                model.addObject("message", "invalid credentails");
+                model.addObject("message", "Username and password should be unique");
                 break;
             case 4:
                 model.setViewName("errorsAndsuccess/error");
