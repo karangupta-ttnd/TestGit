@@ -99,6 +99,11 @@ public class ResourceController {
                         jsonResult.put("reponseStatus", "fail");
                         jsonResult.put("responseMessage", "Error while adding topic related document resource");
                         break;
+                    case 3:
+                        jsonResult.put("responseCode", 3);
+                        jsonResult.put("reponseStatus", "fail");
+                        jsonResult.put("responseMessage", "Error while processing file");
+                        break;
                 }
                 return mapper.writeValueAsString(jsonResult);
             } catch (Exception e) {
@@ -112,8 +117,8 @@ public class ResourceController {
                 jsonResult.put("responseMessage", "You need to login first");
                 return mapper.writeValueAsString(jsonResult);
             } catch (Exception e) {
-                System.out.print(e);
-                return "Exception in save_resource_document() though user not logged in";
+                e.printStackTrace();
+                 return "Exception in save_resource_document() though user not logged in";
             }
         }
     }
