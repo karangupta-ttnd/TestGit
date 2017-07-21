@@ -85,7 +85,7 @@
                             <span>Document*:</span>
                         </div>
                         <div class="col-md-8 form-group">
-                            <input type="file" class="form-control select-border" id="resourceFile" name="resourceFile"/>
+                            <input type="file" class="form-control select-border" id="resourceFile" name="resourceFile" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword"/>
                         </div>
                     </div>
                     <div class="row">

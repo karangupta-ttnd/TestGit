@@ -68,7 +68,7 @@ public class TopicDAOImpl implements TopicDAO {
 
     public List<Object> getRecentPublicTopics() {
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("FROM Topic topic WHERE visibility=0 ORDER BY dateCreated DESC").setMaxResults(5);
+        Query query = session.createQuery("FROM Resource r WHERE r.topic.visibility=0 ORDER BY r.lastUpdated DESC").setMaxResults(5);
         List<Object> recentPublicTopicList = query.list();
         session.close();
         return recentPublicTopicList;

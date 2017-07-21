@@ -216,7 +216,7 @@
                                     <span class="pull-left"> Photo </span>
                                 </label>
                                 <div class="col-md-7 ">
-                                    <form:input type="file" class="form-control" id="user_photo" path="multipartFile"/>
+                                    <form:input type="file"  accept="image/*" class="form-control" id="user_photo" path="multipartFile"/>
                                 </div>
                             </div>
                             <div class="form-group">
