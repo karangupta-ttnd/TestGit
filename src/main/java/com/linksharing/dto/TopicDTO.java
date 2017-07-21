@@ -23,13 +23,14 @@ public class TopicDTO {
     }
 
     public TopicDTO(Topic topic) {
-        this.id = topic.getId();
-        this.createdBy = topic.getCreatedBy();
-        this.dateCreated = topic.getDateCreated();
-        this.lastUpdated = topic.getLastUpdated();
-        this.name = topic.getName();
-        this.visibility = topic.getVisibility();
-
+        if(topic!=null) {
+            this.id = topic.getId();
+            this.createdBy = topic.getCreatedBy();
+            this.dateCreated = topic.getDateCreated();
+            this.lastUpdated = topic.getLastUpdated();
+            this.name = topic.getName();
+            this.visibility = topic.getVisibility();
+        }
     }
 
 

@@ -45,7 +45,8 @@ public class ResourceServiceImpl implements ResourceService {
             resourceDAO.addLinkResource(linkResource);
             return 1;
         } catch (Exception e) {
-            System.out.print("Exception" + e);
+            System.out.print("addTopicURL() in ResourceServiceImpl");
+            e.printStackTrace();
             return 2;
         }
 
@@ -81,11 +82,12 @@ public class ResourceServiceImpl implements ResourceService {
 
                 return 1;
             } catch (Exception e) {
-                System.out.println(e);
+                System.out.println("addDocumentResource() in ResourceDAOImpl");
+                e.printStackTrace();
                 return 2;
             }
         }else{
-            return 2;
+            return 3;
         }
 
     }

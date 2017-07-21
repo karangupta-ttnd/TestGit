@@ -1,5 +1,6 @@
 package com.linksharing.model.services.interfaces;
 
+import com.linksharing.dto.SubscriptionsDTO;
 import com.linksharing.dto.TopicDTO;
 
 /**
@@ -8,7 +9,7 @@ import com.linksharing.dto.TopicDTO;
 public interface SubscriptionService {
 
     int getSubscribersCount();
-    TopicDTO subscribeTopic();
+    int subscribeTopic(SubscriptionsDTO subscriptionsDTO);
     void unsubscribeTopic();
 
 }

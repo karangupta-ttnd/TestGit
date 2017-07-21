@@ -13,13 +13,14 @@ $(function () {
             username: "required",
             password: {
                 required: true,
-                minlength: 5,
+                minlength: 5
             },
             confirm_pwd: {
                 required: true,
                 minlength: 5,
                 equalTo: "#pwd"
-            },multipartFile:{
+            },
+            user_photo:{
                 accept: "image/*"
             }
         },
@@ -33,7 +34,7 @@ $(function () {
             },
             email: "Please enter a valid email address",
             confirm_pwd: "Password should match",
-            multipartFile:"Accepts only image file"
+            user_photo:"Accepts only image file"
         },
         submitHandler: function (form) {
             form.submit();
@@ -55,7 +56,7 @@ $(function () {
             password: {
                 required: "Please provide a password",
                 minlength: "Your password must be at least 5 characters long"
-            },
+            }
         },
         submitHandler: function (form) {
             form.submit();

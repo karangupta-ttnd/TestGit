@@ -1,6 +1,9 @@
 package com.linksharing.dto;
 
 import com.linksharing.enums.SeriousnessType;
+import com.linksharing.model.entities.Subscriptions;
+import com.linksharing.model.entities.Topic;
+import com.linksharing.model.entities.User;
 
 import java.util.Date;
 
@@ -9,11 +12,23 @@ import java.util.Date;
  */
 public class SubscriptionsDTO {
 
-    Integer id;
-    private UserDTO user;
-    private TopicDTO topic;
+    private Integer id;
+    private User user;
+    private Topic topic;
     private SeriousnessType seriousness;
     private Date dateCreated;
+
+    public SubscriptionsDTO(){}
+
+    public SubscriptionsDTO(Subscriptions subscriptions){
+        if (subscriptions!=null) {
+            this.id = subscriptions.getId();
+            this.user = subscriptions.getUser();
+            this.topic = subscriptions.getTopic();
+            this.seriousness = subscriptions.getSeriousness();
+            this.dateCreated = subscriptions.getDateCreated();
+        }
+    }
 
     public Integer getId() {
         return id;
@@ -23,19 +38,19 @@ public class SubscriptionsDTO {
         this.id = id;
     }
 
-    public UserDTO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public TopicDTO getTopic() {
+    public Topic getTopic() {
         return topic;
     }
 
-    public void setTopic(TopicDTO topic) {
+    public void setTopic(Topic topic) {
         this.topic = topic;
     }
 

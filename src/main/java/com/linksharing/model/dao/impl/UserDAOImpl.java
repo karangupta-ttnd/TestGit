@@ -29,15 +29,9 @@ public class UserDAOImpl implements UserDAO {
 
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        try {
-            session.save(user);
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            logger.info("saveUser() in UserDAOImpl" + e);
-            session.getTransaction().rollback();
-        } finally {
-            session.close();
-        }
+        session.save(user);
+        session.getTransaction().commit();
+        session.close();
 
     }
 
@@ -65,7 +59,7 @@ public class UserDAOImpl implements UserDAO {
 
     public User getUserById(int id) {
         Session session = sessionFactory.openSession();
-        User user= (User)session.get(User.class, id);
+        User user = (User) session.get(User.class, id);
         session.close();
         return user;
 
