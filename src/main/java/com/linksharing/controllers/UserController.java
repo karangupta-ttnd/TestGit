@@ -87,6 +87,20 @@ public class UserController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/showProfile/id={id}", method = RequestMethod.GET)
+    public ModelAndView showProfile(ModelAndView modelAndView, HttpSession session,@PathVariable String id) {
+        int userId = session.getAttribute("userId") != null ? (Integer) session.getAttribute("userId") : 0;
+        if (userId != 0) {
+            topicService.getAllTopics(userId);
+            modelAndView.setViewName("profile/privateProfile");
+        }else{
+            userService.getUser(Integer.parseInt(id));
+            modelAndView.setViewName("profile/publicProfile");
+        }
+        return modelAndView;
+    }
+
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView logout(ModelAndView modelAndView, HttpSession session) {
         userService.signout(session);
