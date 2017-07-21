@@ -76,7 +76,6 @@ public class ResourceServiceImpl implements ResourceService {
                 documentResourceDTO.setLastUpdated(new Date());
                 documentResourceDTO.setDescription(description);
                 documentResourceDTO.setFilePath(serverFile.getAbsolutePath());
-//                System.out.println(">>>>>>" + documentResourceDTO.toString());
                 DocumentResource documentResource=new DocumentResource(documentResourceDTO);
                 resourceDAO.addDocumentResource(documentResource);
 
