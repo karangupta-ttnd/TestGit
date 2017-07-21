@@ -11,5 +11,6 @@ public interface TopicDAO {
     void addTopic(Topic topic);
     List<Topic> getAllTopicsCurrentUser(int id);
     Topic getTopicById(int id);
+    List<Object> getRecentPublicTopics();
 
 }

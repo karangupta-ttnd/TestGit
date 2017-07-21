@@ -7,26 +7,31 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
 <div class="row row-buffer">
     <div class="col-md-2">
-        <span class="glyphicon glyphicon-user"></span>
+        <c:choose>
+            <c:when test="${not empty data.photo}">
+                <img class="profilePic" alt="Profile Pic"  src="data:image/jpeg;base64,<c:out value="${data.photo}"/>"/>
+            </c:when>
+            <c:otherwise>
+                <span class="glyphicon glyphicon-userCO"></span>
+            </c:otherwise>
+        </c:choose>
     </div>
     <div class="col-md-10">
         <div class="row">
             <div class="col-md-10">
-                <strong> <span class="username">Uday Pratap Singh</span></strong>
-                <span class="twitter-handler">@uday 5min</span>
+                <strong> <span class="username"><c:out value="${data.firstName} ${data.lastName}"/></span></strong>
+                <span class="twitter-handler"><c:out value="${data.username}"/></span>
             </div>
             <div class="col-md-2 pull-right">
-                <span><a href="#" class="link"> Grails</a></span>
+                <span><a href="#" class="link"><c:out value="${data.topicName}"/></a></span>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the
-                1500s, when an unknown printer took a galley of type and scrambled it to
-                make a type specimen book.
+
             </div>
         </div>
         <div class="row links">
@@ -36,7 +41,7 @@
                 <i class="fa fa-google-plus  fa-2x" aria-hidden="true"></i>
             </div>
             <div class="col-md-2 pull-right">
-                <span><u><a href="#" class="link"> View Posts</a></u></span>
+                <span><u><a href="/showPost?id=<c:out value="${data.topicId}"/>" class="link"> View Posts</a></u></span>
             </div>
         </div>
     </div>

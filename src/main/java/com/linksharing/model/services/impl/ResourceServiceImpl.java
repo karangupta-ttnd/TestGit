@@ -95,9 +95,6 @@ public class ResourceServiceImpl implements ResourceService {
 
     }
 
-    public void downloadResource() {
-
-    }
 
     private String getUniqueFileName(String fileName){
         int i=fileName.lastIndexOf('.');

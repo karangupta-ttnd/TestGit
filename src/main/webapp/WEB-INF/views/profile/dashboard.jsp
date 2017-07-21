@@ -22,7 +22,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <% if(session.getAttribute("userImage")!=null)
+                                    <% if(session.getAttribute("userImage")!=null && !session.getAttribute("userImage").equals(""))
                                         {out.print("<img class=\"profilePic\" alt=\"Profile Pic\"  src=\"data:image/jpeg;base64,"+session.getAttribute("userImage")+"\"/>");}
                                     else
                                         {out.print("<span class=\"glyphicon glyphicon-userCO\"></span>");}
