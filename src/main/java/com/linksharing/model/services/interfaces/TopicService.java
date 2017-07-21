@@ -20,7 +20,6 @@ public interface TopicService {
     void searchTopics();
     void viewPost();
     void getAllTopicsCount();
-    boolean isTopicUnique(TopicDTO topicDTO);
     int addTopic(TopicDTO topicDTO, UserDTO userDTO);
     TopicDTO getTopicDTO(int id);
     Topic getTopic(int id);

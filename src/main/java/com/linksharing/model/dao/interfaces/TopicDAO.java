@@ -12,5 +12,5 @@ public interface TopicDAO {
     List<Topic> getAllTopicsCurrentUser(int id);
     Topic getTopicById(int id);
     List<Object> getRecentPublicTopics();
-
+    Topic checkUniqueTopic(Topic topic);
 }
