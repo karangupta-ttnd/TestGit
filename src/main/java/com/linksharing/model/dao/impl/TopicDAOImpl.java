@@ -27,18 +27,13 @@ public class TopicDAOImpl implements TopicDAO {
     private static final Logger logger = Logger.getLogger(TopicDAOImpl.class);
 
     @Transactional
-    public void addTopic(Topic topic) {
+    public int addTopic(Topic topic) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        try {
-            session.save(topic);
-            session.getTransaction().commit();
-        } catch (HibernateException e) {
-            session.getTransaction().rollback();
-            logger.info("addTopic() in TopicDAOImpl" + e);
-        } finally {
-            session.close();
-        }
+        int id=(Integer)session.save(topic);
+        session.getTransaction().commit();
+        session.close();
+        return id;
     }
 
 
@@ -72,7 +67,6 @@ public class TopicDAOImpl implements TopicDAO {
         List<Object> recentPublicTopicList = query.list();
         session.close();
         return recentPublicTopicList;
-
     }
 
 
