@@ -2,6 +2,7 @@ package com.linksharing.controllers;
 
 import com.linksharing.dto.LoginDTO;
 import com.linksharing.dto.UserDTO;
+import com.linksharing.model.services.interfaces.TopicService;
 import com.linksharing.util.mail.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,12 @@ public class HomeController {
 
     @Autowired
     MailService mailService;
+    @Autowired
+    TopicService topicService;
 
 
     @RequestMapping(value={"/home","/"}, method = RequestMethod.GET)
     public String viewHome(Model model, HttpSession session){
-        System.out.println("in viewHome");
 //        mailService.sendEmail("karan.gupta@tothenew.com");
         int id = session.getAttribute("userId")!=null?(Integer)session.getAttribute("userId"):0;
         if (id != 0) {

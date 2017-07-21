@@ -23,4 +23,5 @@ public interface TopicService {
     int addTopic(TopicDTO topicDTO, UserDTO userDTO);
     TopicDTO getTopicDTO(int id);
     Topic getTopic(int id);
+    TopicDTO getRecentPublicTopic();
 }

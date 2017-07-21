@@ -12,7 +12,7 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="row header">
     <div class="col-md-6">
-        <h3><a class="link" href="#"><u> Link Sharing</u></a></h3>
+        <h3><a class="link" href="/showDashboard"><u> Link Sharing</u></a></h3>
     </div>
     <div class="col-md-6">
         <div class="row">
