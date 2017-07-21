@@ -1,5 +1,7 @@
 package com.linksharing.dto;
 
+import com.linksharing.model.entities.DocumentResource;
+import com.linksharing.model.entities.Resource;
 import com.linksharing.model.entities.Topic;
 import com.linksharing.model.entities.User;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
@@ -16,16 +18,18 @@ public class RecentShareDTO {
   private String username;
   private String topicName;
   private String photo;
+  private String description;
 
 
     public RecentShareDTO(Object object){
-        topicId=((Topic)object).getId();
-        topicName=((Topic)object).getName();
-        userId=((Topic)object).getCreatedBy().getId();
-        firstName =((Topic)object).getCreatedBy().getFirstName();
-        lastName=((Topic)object).getCreatedBy().getLastName();
-        username=((Topic)object).getCreatedBy().getUsername();
-        photo= Base64.encode(((Topic)object).getCreatedBy() .getPhoto());
+        topicId=((Resource)object).getTopic().getId();
+        topicName=((Resource)object).getTopic().getName();
+        userId=((Resource)object).getTopic().getCreatedBy().getId();
+        firstName =((Resource)object).getTopic().getCreatedBy().getFirstName();
+        lastName=((Resource)object).getTopic().getCreatedBy().getLastName();
+        username=((Resource)object).getTopic().getCreatedBy().getUsername();
+        photo= Base64.encode(((Resource)object).getTopic().getCreatedBy() .getPhoto());
+        description=((Resource)object).getDescription();
     }
 
     public int getTopicId() {
@@ -46,6 +50,10 @@ public class RecentShareDTO {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getTopicName() {
