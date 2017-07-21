@@ -33,9 +33,18 @@ public class TopicServiceImpl implements TopicService {
     @Autowired
     private SubscriptionService subscriptionService;
 
-    public boolean isTopicUnique(TopicDTO topicDTO) {
-//      topicDAO.checkUniqueTopic();
-        return false;
+    private boolean isTopicUnique(TopicDTO topicDTO) {
+       try{
+           Topic topic=new Topic(topicDTO);
+           topic= topicDAO.checkUniqueTopic(topic);
+           if(topic!=null)
+               return false;
+       }catch(Exception e)
+       {
+           e.printStackTrace();
+           return false;
+       }
+       return true;
     }
 
     public List<RecentShareDTO> getRecentPublicTopic() {
@@ -57,13 +66,17 @@ public class TopicServiceImpl implements TopicService {
             topicDTO.setCreatedBy(user);
             topicDTO.setDateCreated(new Date());
             topicDTO.setLastUpdated(new Date());
-            Topic topic = new Topic(topicDTO);
-            SubscriptionsDTO subscriptionsDTO = new SubscriptionsDTO();
-            subscriptionsDTO.setDateCreated(new Date());
-            subscriptionsDTO.setSeriousness(SeriousnessType._VERY_SERIOUS);
-            subscriptionsDTO.setUser(user);
-            subscriptionsDTO.setTopic(topicDAO.getTopicById(topicDAO.addTopic(topic)));
-            return subscriptionService.subscribeTopic(subscriptionsDTO);
+            if (isTopicUnique(topicDTO)){
+                Topic topic = new Topic(topicDTO);
+                SubscriptionsDTO subscriptionsDTO = new SubscriptionsDTO();
+                subscriptionsDTO.setDateCreated(new Date());
+                subscriptionsDTO.setSeriousness(SeriousnessType._VERY_SERIOUS);
+                subscriptionsDTO.setUser(user);
+                subscriptionsDTO.setTopic(topicDAO.getTopicById(topicDAO.addTopic(topic)));
+                return subscriptionService.subscribeTopic(subscriptionsDTO);
+            }else{
+                return 3;
+            }
         } catch (Exception e) {
             System.out.print("addTop() in TopicServiceImpl; " + e);
             return 2;

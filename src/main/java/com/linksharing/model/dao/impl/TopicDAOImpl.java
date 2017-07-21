@@ -69,5 +69,18 @@ public class TopicDAOImpl implements TopicDAO {
         return recentPublicTopicList;
     }
 
+    public Topic checkUniqueTopic(Topic topic)
+    {
+        Session session = sessionFactory.openSession();
+        Query query = session.createQuery("FROM Topic t WHERE t.createdBy=:id and t.name=:name").setEntity("id",topic.getCreatedBy()).setString("name",topic.getName());
+        Object queryResult = query.uniqueResult();
+        if (queryResult != null)
+            topic = (Topic) queryResult;
+        else
+            topic=null;
+        session.close();
+        return topic;
+    }
+
 
 }

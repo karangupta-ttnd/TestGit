@@ -54,6 +54,11 @@ public class TopicController {
                         jsonResult.put("reponseStatus","fail");
                         jsonResult.put("responseMessage","Error while adding topic");
                         break;
+                    case 3:
+                        jsonResult.put("responseCode",3);
+                        jsonResult.put("reponseStatus","Topic Already added by you!!");
+                        jsonResult.put("responseMessage","Kindly use another topic name which has not been used earlier");
+                        break;
                 }
                 logger.info(">>>>" + topicDTO);
                 return mapper.writeValueAsString(jsonResult) ;
