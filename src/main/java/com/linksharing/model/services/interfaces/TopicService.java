@@ -1,5 +1,6 @@
 package com.linksharing.model.services.interfaces;
 
+import com.linksharing.dto.RecentShareDTO;
 import com.linksharing.dto.TopicDTO;
 import com.linksharing.dto.UserDTO;
 import com.linksharing.model.entities.Topic;
@@ -23,5 +24,5 @@ public interface TopicService {
     int addTopic(TopicDTO topicDTO, UserDTO userDTO);
     TopicDTO getTopicDTO(int id);
     Topic getTopic(int id);
-    TopicDTO getRecentPublicTopic();
+    List<RecentShareDTO> getRecentPublicTopic();
 }

@@ -14,5 +14,8 @@
 </head>
 <body>
 Error:<c:out value="${message}"/>
+<%
+    response.setHeader("Refresh", "3000; URL=/home" );
+%>
 </body>
 </html>

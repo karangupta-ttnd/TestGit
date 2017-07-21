@@ -3,6 +3,7 @@ package com.linksharing.model.entities;
 import com.linksharing.dto.UserDTO;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -150,5 +151,23 @@ public class User {
 
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", oauthid='" + oauthid + '\'' +
+                ", photo=" + Arrays.toString(photo) +
+                ", admin=" + admin +
+                ", active=" + active +
+                ", dateCreated=" + dateCreated +
+                ", lastUpdated=" + lastUpdated +
+                '}';
     }
 }

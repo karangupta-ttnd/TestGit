@@ -11,5 +11,8 @@
 <%--<c:if test="${not empty message}">--%>
     <%--Hello ${model.message}--%>
 <%--</c:if>--%>
+<%
+    response.setHeader("Refresh", "3000; URL=/home" );
+%>
 </body>
 </html>
