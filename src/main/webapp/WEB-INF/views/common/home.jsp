@@ -135,7 +135,7 @@
                             <div class="form-group">
 
                                 <div class="col-md-6">
-                                    <span class="pull-right" id="forgot_pwd"><a href="#"
+                                    <span class="pull-right" data-toggle="modal" data-target="#forgotPassword" id="forgot_pwd"><a href="#"
                                                                                 class="link"><u>Forgot Password</u></a></span>
                                 </div>
                                 <div class="col-md-6">
@@ -267,6 +267,51 @@
                     <div class="col-md-12">
                         <div class="pull-right">
                             <button type="button" class="btn btn-default">Invite</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--ForgotPassword Modal -->
+<div class="modal fade" id="forgotPassword" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Forgot Password</h4>
+            </div>
+            <div class="modal-body ">
+                <form name="forget_Password_Form">
+                <div class="row form-group">
+                    <div class="col-md-4">
+                        <span>Email*:</span>
+                    </div>
+                    <div class="col-md-8 form-group">
+                            <input type="text" class="form-control select-border"  id="verify_email" placeholder="abc@ttnd.com"/>
+                            <span class="error_msg"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <span>Username*:</span>
+                    </div>
+                    <div class="col-md-8 form-group">
+                        <input type="text" class="form-control select-border"  id="verify_username" placeholder="@uday"/>
+                            <span class="error_msg"></span>
+                    </div>
+                </div>
+                </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default" id="forgotPasswordButton">Submit</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/style.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="row header">
@@ -28,7 +28,7 @@
 												<span data-toggle="modal" data-target="#createTopic"><i class="fa fa-comment"></i></span>
 												<span data-toggle="modal" data-target="#sendInvitation"><i class="glyphicon glyphicon-envelope"></i></span>
 												<span data-toggle="modal" data-target="#shareLink"><i class="glyphicon glyphicon-link"></i></span>
-												<span data-toggle="modal" data-target="#shareDocument"><img src="assets/icons/new-file.png" alt="new file"
+												<span data-toggle="modal" data-target="#shareDocument"><img src="/assets/icons/new-file.png" alt="new file"
                                                            class="new-file"/></span>
 										</span>
             </div>

@@ -3,6 +3,8 @@ package com.linksharing.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.linksharing.dto.ForgotPasswordDTO;
+import com.linksharing.dto.TopicDTO;
 import com.linksharing.dto.UserDTO;
 import com.linksharing.model.services.interfaces.TopicService;
 import com.linksharing.model.services.interfaces.UserService;
@@ -108,6 +110,40 @@ public class UserController {
         modelAndView.addObject("message", "You have logged out successfully");
         return modelAndView;
     }
+
+    @RequestMapping(value = "/forgot_password", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public String forgotPassword(@RequestBody String json) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode jsonResult = mapper.createObjectNode();
+        try {
+            ForgotPasswordDTO forgotPasswordDTO = mapper.readValue(json,ForgotPasswordDTO.class);
+            int responseCode = userService.forgotPassword(forgotPasswordDTO);
+            switch (responseCode) {
+                case 1:
+                    jsonResult.put("responseCode",1);
+                    jsonResult.put("reponseStatus","success");
+                    jsonResult.put("responseMessage","Please check your inbox! A temporary password has been sent.");
+                    break;
+                case 2:
+                    jsonResult.put("responseCode",2);
+                    jsonResult.put("reponseStatus","fail");
+                    jsonResult.put("responseMessage","Error while processing request");
+                    break;
+                case 3:
+                    jsonResult.put("responseCode",3);
+                    jsonResult.put("reponseStatus","Invalid Information!!");
+                    jsonResult.put("responseMessage","No user with such credentials exist");
+                    break;
+            }
+
+            return mapper.writeValueAsString(jsonResult) ;
+        } catch (Exception e) {
+            System.out.print("Exception in forgotPassword() in TopicController" + e);
+            return "Exception caught in forgotPassword() Topic Controller";
+        }
+    }
+
 
 
 }

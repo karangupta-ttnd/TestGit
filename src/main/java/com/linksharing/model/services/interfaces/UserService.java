@@ -1,5 +1,6 @@
 package com.linksharing.model.services.interfaces;
 
+import com.linksharing.dto.ForgotPasswordDTO;
 import com.linksharing.dto.LoginDTO;
 import com.linksharing.dto.UserDTO;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +16,7 @@ public interface UserService {
    int login(LoginDTO user, HttpSession session);
    Map<String, String> register(UserDTO user, MultipartFile file);
    void signout(HttpSession session);
-   void forgotPassword();
+   int forgotPassword(ForgotPasswordDTO forgotPasswordDTO);
    void updateProfileDetails();
    UserDTO getUser(int id);
 

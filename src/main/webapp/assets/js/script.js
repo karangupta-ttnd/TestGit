@@ -92,7 +92,6 @@ $(function () {
         }
     });
 
-
     //field validation when sharing topic link
     $("share_link_form").validate({
         rules: {
@@ -123,23 +122,73 @@ $(function () {
             }
         }
     });
+    // "form[name='']"
+
+    $("form[name='forget_Password_Form']").validate({
+        rules: {
+            verify_username: {
+                required: true,
+                minlength: 5
+            },
+            verify_email:{
+                email: true,
+                required: true,
+                minlength: 7
+            }
+        },
+        // Specify validation error messages
+        messages: {
+            verify_email:{
+                required:"Enter valid email",
+                minlength: "Your email must be at least 7 characters long"
+            },
+            verify_username:{
+                required:"Enter valid username",
+                minlength: "Your username must be at least 7 characters long"
+            }
+        }
+    });
 
 //  form file upload
     var file = $('[name="resourceFile"]');
 //    form file upload
 
+    $('#remove-sign').click(function () {
+        $("#search-input").val('');
+    });
+
+
 
 });//end of document ready
 
 
-$('#remove-sign').click(function () {
-    $("#search-input").val('');
+//Forgot Password
+$("#forgotPasswordButton").click(function () {
+
+    // if ($("forget_Password_Form").valid()) {
+
+    var Details = {
+        username: $("#verify_username").val(),
+        email: $("#verify_email").val()
+    };
+
+    $.ajax({
+        url: "/forgot_password",
+        type: 'POST',
+        data: JSON.stringify(Details),
+        contentType: "application/json",
+        success: function (result) {
+            alert(JSON.stringify(result));
+        },
+        error: function (e) {
+            alert("Error check console");
+            console.log(">>>>Error here:" + JSON.stringify(e));
+        }
+
+    });
+// }
 });
 
-
-function some() {
-    alert("s");
-}
 
 //to save topic
 $("#saveTopic").click(function () {
