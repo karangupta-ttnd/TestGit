@@ -21,6 +21,7 @@ public class RecentShareDTO {
   private String description;
 
 
+
     public RecentShareDTO(Object object){
         topicId=((Resource)object).getTopic().getId();
         topicName=((Resource)object).getTopic().getName();
