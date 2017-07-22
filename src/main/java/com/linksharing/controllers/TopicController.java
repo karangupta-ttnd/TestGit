@@ -2,7 +2,6 @@ package com.linksharing.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.linksharing.dto.TopicDTO;
 import com.linksharing.dto.UserDTO;
 import com.linksharing.model.services.interfaces.TopicService;
@@ -10,10 +9,7 @@ import com.linksharing.model.services.interfaces.UserService;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -79,19 +75,6 @@ public class TopicController {
         }
 
     }
-
-    @RequestMapping(value = "/validate_topic_name", method = RequestMethod.POST)
-    @ResponseBody
-    public Boolean validate_topic_name(@RequestBody String string) {
-
-        System.out.println(">>>>" + string);
-
-//        if(topicService.isTopicUnique())
-//            return true;
-        return false;
-    }
-
-
 
 
 }
