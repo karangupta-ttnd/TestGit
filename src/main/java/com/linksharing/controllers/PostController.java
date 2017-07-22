@@ -24,15 +24,8 @@ public class PostController {
     TopicService topicService;
 
     @RequestMapping(value = "/showPost/id={id}", method = RequestMethod.GET)
-    public ModelAndView showPost(ModelAndView modelAndView, HttpSession session, @PathVariable String id) {
-        int userId = session.getAttribute("userId") != null ? (Integer) session.getAttribute("userId") : 0;
-        if (userId != 0) {
-            topicService.getAllTopics(userId);
-            modelAndView.setViewName("profile/privateProfile");
-        }else{
-            userService.getUser(Integer.parseInt(id));
-            modelAndView.setViewName("profile/publicProfile");
-        }
+    public ModelAndView showPost(ModelAndView modelAndView, @PathVariable String id) {
+        modelAndView.setViewName("profile/showPosts");
         return modelAndView;
     }
 
