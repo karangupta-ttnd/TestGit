@@ -6,10 +6,8 @@ show tables;
 
 select * from User;
 describe User;
-<<<<<<< Updated upstream
-=======
+
 delete from User;
->>>>>>> Stashed changes
 
 update User set password=12345 where user_id=1;
 

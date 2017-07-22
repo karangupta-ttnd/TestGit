@@ -78,21 +78,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <span>Subscriptions</span>
-                                </div>
-                                <div class="col-md-9 ">
-                                    <span class="pull-right"><a href="#"><u>View All</u></a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-
-                        </div>
-                    </div>
+                    <%@ include file="../pageComponent/topics.jsp" %>
                 </div>
             </div>
 
@@ -206,5 +192,6 @@
     </div>
 </div>
 <%@ include file="../headerAndfooter/footer.jsp" %>
+<%@ include file="../pageComponent/modals.jsp" %>
 </body>
 </html>
