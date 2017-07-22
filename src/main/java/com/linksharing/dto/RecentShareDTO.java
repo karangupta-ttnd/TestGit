@@ -19,7 +19,16 @@ public class RecentShareDTO {
   private String topicName;
   private String photo;
   private String description;
+  private String url;
+  private String filePath;
 
+    public String getUrl() {
+        return url;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
 
     public RecentShareDTO(Object object){
         topicId=((Resource)object).getTopic().getId();
@@ -30,6 +39,7 @@ public class RecentShareDTO {
         username=((Resource)object).getTopic().getCreatedBy().getUsername();
         photo= Base64.encode(((Resource)object).getTopic().getCreatedBy() .getPhoto());
         description=((Resource)object).getDescription();
+
     }
 
     public int getTopicId() {

@@ -18,7 +18,7 @@ public abstract class Resource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 1000)
     private String description;
 
     @ManyToOne(targetEntity = User.class,optional = false)

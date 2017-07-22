@@ -11,7 +11,7 @@ delete from User;
 
 update User set password=12345 where user_id=1;
 
-delete from User where user_id=2;
+delete from User where user_id=5;
 
 
 select * from Topic;
