@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
     public User getUserByEmailandUsername(String email, String username) {
         User user = null;
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from User where email =:email and username=:uname").setString("email", email).setString("uname", username);
+        Query query = session.createQuery("from User where email =:email or username=:uname").setString("email", email).setString("uname", username);
         Object queryResult = query.uniqueResult();
         if (queryResult != null)
             user = (User) queryResult;
@@ -64,6 +64,16 @@ public class UserDAOImpl implements UserDAO {
         return user;
 
     }
+
+   public int saveTemporaryPassword(String email, String username,int pin){
+       Session session = sessionFactory.openSession();
+       session.beginTransaction();
+       Query query = session.createQuery("UPDATE User u set u.password=:pwd where u.email =:email and u.username=:uname and u.active=1").setInteger("pwd",pin).setString("email", email).setString("uname", username);
+       int update=query.executeUpdate();
+       session.getTransaction().commit();
+       return update;
+   }
+
 
 
 }

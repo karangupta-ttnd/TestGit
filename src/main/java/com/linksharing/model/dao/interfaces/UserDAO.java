@@ -11,4 +11,5 @@ public interface UserDAO {
     User getUserByEmailandUsername(String email, String username);
     User getRegisteredUser(String email, String password);
     User getUserById(int id);
+    int saveTemporaryPassword(String email, String username,int pin);
 }

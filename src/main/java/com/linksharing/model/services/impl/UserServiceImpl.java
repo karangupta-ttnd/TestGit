@@ -1,10 +1,13 @@
 package com.linksharing.model.services.impl;
 
+import com.linksharing.dto.EMailerDTO;
+import com.linksharing.dto.ForgotPasswordDTO;
 import com.linksharing.dto.LoginDTO;
 import com.linksharing.dto.UserDTO;
 import com.linksharing.model.dao.interfaces.UserDAO;
 import com.linksharing.model.entities.User;
 import com.linksharing.model.services.interfaces.UserService;
+import com.linksharing.util.mail.service.MailService;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.security.SecureRandom;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by karan on 13/7/17.
@@ -27,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    MailService mailService;
 
     private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
 
@@ -70,10 +78,10 @@ public class UserServiceImpl implements UserService {
                     return 1;
                 }
                 session.setAttribute("userId", user.getId());
-                session.setAttribute("firstName",user.getFirstName());
-                session.setAttribute("lastName",user.getLastName());
-                session.setAttribute("userName",user.getUsername());
-                session.setAttribute("userImage",Base64.encode(user.getPhoto()));
+                session.setAttribute("firstName", user.getFirstName());
+                session.setAttribute("lastName", user.getLastName());
+                session.setAttribute("userName", user.getUsername());
+                session.setAttribute("userImage", Base64.encode(user.getPhoto()));
             } else {
                 return 3;
             }
@@ -83,7 +91,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public UserDTO getUser(int id){
+    public UserDTO getUser(int id) {
         return new UserDTO(userDAO.getUserById(id));
     }
 
@@ -91,7 +99,26 @@ public class UserServiceImpl implements UserService {
         session.invalidate();
     }
 
-    public void forgotPassword() {
+    public int forgotPassword(ForgotPasswordDTO forgotPasswordDTO) {
+        try {
+            Random rnd = new Random();
+            rnd.setSeed(5);
+            int randomNumber = 100000 + rnd.nextInt() * 900000;
+            if (userDAO.saveTemporaryPassword(forgotPasswordDTO.getEmail(), forgotPasswordDTO.getUsername(), randomNumber) > 0) {
+                EMailerDTO eMailerDTO = new EMailerDTO();
+                eMailerDTO.setFrom("karangupta.199317@gmail.com");
+                eMailerDTO.setTo(forgotPasswordDTO.getEmail());
+                eMailerDTO.setSubject("Temporary password for Login");
+                eMailerDTO.setBody("Use the following pin as your password: "+randomNumber);
+                mailService.sendEmail(eMailerDTO);
+                return 1;
+            } else {
+                return 3;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 2;
+        }
     }
 
     public void updateProfileDetails() {

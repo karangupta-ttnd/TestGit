@@ -1,5 +1,6 @@
 package com.linksharing.util.mail.service;
 
+import com.linksharing.dto.EMailerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,28 +17,30 @@ public class MailServiceImpl implements MailService {
 	@Autowired
 	JavaMailSender mailSender;
 
-	public void sendEmail(String email) {
+	public void sendEmail(Object object) {
 
-		MimeMessagePreparator preparator = getMessagePreparator(email);
+		EMailerDTO eMailerDTO=(EMailerDTO)object;
+
+		MimeMessagePreparator preparator = getMessagePreparator(eMailerDTO);
 
 		try {
 			mailSender.send(preparator);
-			System.out.println("Message Send...Hurrey");
+			System.out.println("Message Send...");
 		} catch (MailException ex) {
 			System.err.println(ex.getMessage());
 		}
 	}
 
-	private MimeMessagePreparator getMessagePreparator(String email) {
+	private MimeMessagePreparator getMessagePreparator(final EMailerDTO eMailerDTO ) {
 
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 
 			public void prepare(MimeMessage mimeMessage) throws Exception {
-				mimeMessage.setFrom("karangupta.199317@gmail.com");
+				mimeMessage.setFrom(eMailerDTO.getFrom());
 				mimeMessage.setRecipient(Message.RecipientType.TO,
-						new InternetAddress("karan.gupta@tothenew.com"));
-				mimeMessage.setText("test mail" );
-				mimeMessage.setSubject("Your order on Demoapp");
+						new InternetAddress(eMailerDTO.getTo()));
+				mimeMessage.setText(eMailerDTO.getBody() );
+				mimeMessage.setSubject(eMailerDTO.getSubject());
 			}
 		};
 		return preparator;
